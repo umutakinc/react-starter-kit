@@ -1,24 +1,29 @@
-import logo from './logo.svg'
-import Test from "./Test"
-import { Title } from "./Components"
-import Bootstrap from './Bootstrap'
-import styles from './App.module.css'
+// JSX kullanmak istemezsek createElement import etmemiz gerekiyor
+import { createElement } from 'react';
+
+import './style.scss'
 
 function App() {
+  const todos = ['todo1', 'todo2', 'todo3'];
+
+  // JSX kullanmazsak
+  const h1 = createElement('h1', null, 'prototürk')
+  const ul = createElement('ul', null, todos.map(todo => createElement('li', null, todo)));
+  return createElement('main', {
+    className: 'test',
+    id: 'main'
+  }, h1, ul)
+
+  // JSX kullanırsak
   return (
-    <div className={styles.App}>
-      <Title>{process.env.NODE_ENV}</Title>
-      <Title theme='dark'>{process.env.NODE_ENV}</Title>
-      <p>{process.env.REACT_APP_API_URL}</p>
-      <Test />
-      {process.env.NODE_ENV === 'production' && (
-        <>
-          <img src="/logo192.png" alt="" />
-          <img src={logo} alt="" />
-        </>
-      )}
-      <Bootstrap />
-    </div>
+    <main className='test' id='main'>
+      <h1>prototürk</h1>
+      <ul>
+        {todos.map(todo => (
+          <li>{todo}</li>
+        ))}
+      </ul>
+    </main>
   );
 }
 
