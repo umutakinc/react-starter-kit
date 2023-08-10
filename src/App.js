@@ -1,5 +1,5 @@
 // JSX kullanmak istemezsek createElement import etmemiz gerekiyor
-import { createElement } from 'react';
+import { createElement, Fragment } from 'react';
 
 import './style.scss'
 
@@ -19,12 +19,28 @@ function App() {
   // }, h1, ul)
 
   // JSX kullanırsak
-  return (
-    <main className='test' id='main'>
-      {/* JSX inline css syntax */}
-      <h1 style={{color: 'red', backgroundColor: 'yellow'}}>prototürk</h1>
+  // return (
+  //   <main className='test' id='main'>
+  //     {/* JSX inline css syntax */}
+  //     <h1 style={{color: 'red', backgroundColor: 'yellow'}}>prototürk</h1>
       
-      {/* JSX kullanırken for attr yerine htmlFor kullanıyoruz */}
+  //     {/* JSX kullanırken for attr yerine htmlFor kullanıyoruz */}
+  //     <label htmlFor='search'>Arama</label>
+  //     <input type='text' id='search' onClick={searchFunction}></input>
+  //     <ul>
+  //       {todos.map((todo, index) => (
+  //         <li key={index}>{todo}</li>
+  //       ))}
+  //     </ul>
+  //   </main>
+  // );
+
+  // Fragment
+  // Her zaman bir elementin sarmalaması gerekiyor diğer elementleri. Biz sarmalayacak element koymak istemiyorsak Fragment kullanıyoruz.
+  // Veya boş etikette kullanabiliriz fragment yerine <> </>
+  return (
+    <Fragment>
+      <h1 style={{color: 'red', backgroundColor: 'yellow'}}>prototürk</h1>
       <label htmlFor='search'>Arama</label>
       <input type='text' id='search' onClick={searchFunction}></input>
       <ul>
@@ -32,7 +48,7 @@ function App() {
           <li key={index}>{todo}</li>
         ))}
       </ul>
-    </main>
+    </Fragment>
   );
 }
 
